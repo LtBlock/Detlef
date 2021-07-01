@@ -1,5 +1,5 @@
 {
     "prefix": "!",
-    "timeout": 360000,
+    "timeout": 3600000,
     "max_reactions": 5
 }
