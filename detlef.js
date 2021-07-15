@@ -1,18 +1,27 @@
-import dotenv from 'dotenv';
+const dotenv = require('dotenv');
 dotenv.config();
 const token = process.env.TOKEN;
+const { version } = require('./package.json');
 
-import Discord from 'discord.js';
+const Discord = require('discord.js');
 const client = new Discord.Client();
 
-import { commands } from './commands.js';
-import { config } from './config.js';
+const { commands } = require('./commands.js');
+const { config } = require('./config.json');
 
 const { prefix } = config;
 
 client.once('ready', () => {
 	console.log('Hello There!');
-	console.log(commands);
+	client.user.setUsername(`Detlef v ${version}`)
+		.then(user => console.log(`Detlef running as User ${user.username}`))
+		.catch (console.error);
+	client.user.setActivity('menacingly', {type: 'staring'})
+		.then(presence => console.log(`Activity set to ${presence.activities[0].name}`))
+		.catch(console.error);
+	client.user.setStatus('Don\'t !poke me!')
+		.then(console.log)
+		.catch(console.error);
 });
 
 client.on('message', (msg) => {
