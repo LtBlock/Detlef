@@ -7,20 +7,15 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 const { commands } = require('./commands.js');
-const { config } = require('./config.json');
-
-const { prefix } = config;
+const { prefix } = require('./config.json');
 
 client.once('ready', () => {
 	console.log('Hello There!');
-	client.user.setUsername(`Detlef v ${version}`)
-		.then(user => console.log(`Detlef running as User ${user.username}`))
-		.catch (console.error);
-	client.user.setActivity('menacingly', {type: 'staring'})
-		.then(presence => console.log(`Activity set to ${presence.activities[0].name}`))
+	client.user.setUsername(`Detlef v${version}`)
+		.then(user => console.log(`Detlef running as User '${user.username}'`))
 		.catch(console.error);
-	client.user.setStatus('Don\'t !poke me!')
-		.then(console.log)
+	client.user.setPresence({ activity: { name: 'dem Pöbel', type: 'LISTENING' }, status: 'Don\'t !poke me!' })
+		.then(presence => console.log('Status and Activity ready!'))
 		.catch(console.error);
 });
 

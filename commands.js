@@ -1,12 +1,12 @@
 const { getWeekday, getEmojiArray } = require('./utils.js');
-const { config } = require('./config.js');
+const { timeout: TIMEOUT, max_reactions: MAX_REACTIONS } = require('./config.json');
 
-const { timeout: TIMEOUT, max_reactions: MAX_REACTIONS } = config;
-
-export const commands = {
-	'poke': (args) => poke(args),
-	'ansage': (args) => ansage(args),
-	'plündern': (args) => plündern(args),
+module.exports = {
+	commands: {
+		'poke': (args) => poke(args),
+		'ansage': (args) => ansage(args),
+		'plündern': (args) => plündern(args),
+	},
 };
 
 const poke = (msg) => {
@@ -27,14 +27,13 @@ const ansage = (msg) => {
 
 const plündern = (msg) => {
 	const emotes = getEmojiArray(msg.guild.emojis, 7);
-	console.log(emotes);
+	// console.log(emotes);
 	msg.channel.send(getPollText(msg, emotes))
 		.then(message => {
 			emotes.forEach(async emote => {
 				try {
 					await message.react(emote);
-				}
-				catch (error) {
+				} catch (error) {
 					console.log(error);
 				}
 			});
