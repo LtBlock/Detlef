@@ -1,0 +1,1 @@
+worker: trap '' SIGTERM; npm start & wait -n; kill -SIGTERM -$$; wait
