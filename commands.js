@@ -1,5 +1,5 @@
-import { getWeekday, getEmojiArray } from './utils.js';
-import { config } from './config.js';
+const { getWeekday, getEmojiArray } = require('./utils.js');
+const { config } = require('./config.js');
 
 const { timeout: TIMEOUT, max_reactions: MAX_REACTIONS } = config;
 
