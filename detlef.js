@@ -1,6 +1,5 @@
 const dotenv = require('dotenv');
 dotenv.config();
-const token = process.env.TOKEN;
 const { version } = require('./package.json');
 
 const Discord = require('discord.js');
@@ -33,4 +32,4 @@ client.on('error', (error) => {
 	console.log('ALARM', error);
 });
 
-client.login(token);
+client.login(process.env.TOKEN);
